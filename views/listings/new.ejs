@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate') -%>
+<% var title = "Add New Property"; %>
+
+    <h1 class="page-heading" >Add new property!</h1>
+    <form class="add-new-form needs-validation" action="/listings" method="POST" novalidate enctype="multipart/form-data">
+        <input class="form-control" type="text" name="listing[title]" placeholder="Enter the name of property" required>
+        <textarea class="form-control" name="listing[description]" id="" placeholder="Enter the description" required></textarea>
+        <input class="form-control" type="file" name="listing[image]" placeholder="Upload Image" required> 
+        <input class="form-control" type="number" name="listing[price]" id="" placeholder="Enter the price" required> 
+        <input class="form-control" type="text" name="listing[location]" placeholder="Enter the location" required> 
+        <input class="form-control" type="text" name="listing[country]" placeholder="Enter the country" required> 
+        <button>Submit</button>
+    </form>
+
+    

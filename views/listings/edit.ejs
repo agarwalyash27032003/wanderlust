@@ -1,0 +1,17 @@
+<% layout('layouts/boilerplate') -%>
+<% var title = listing.title; %>
+<title><%= title %></title>
+
+    <form class="add-new-form" action="/listings/<%=listing._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <input type="text" name="listing[title]" value="<%= listing.title %>" id="">
+        <textarea name="listing[description]" id="" ><%= listing.description %></textarea>
+        <div class="org-image">
+            <p>Original Listing image</p>
+            <img src="<%= orgImage %>" alt="">
+        </div>
+        <input type="file" name="listing[image]" id="">
+        <input type="number" name="listing[price]" value="<%= listing.price %>" id="">
+        <input type="text" name="listing[location]" value="<%= listing.location %>" id=""> 
+        <input type="text" name="listing[country]" value="<%= listing.country %>" id=""> 
+        <button>Submit</button>
+    </form>

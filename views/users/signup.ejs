@@ -1,0 +1,10 @@
+<% layout('layouts/boilerplate') -%>
+<% var title = "Wanderlust"; %>
+
+<h1 class="page-heading" >Sign Up!</h1>
+<form class="add-new-form needs-validation" action="/signup" method="POST" novalidate>
+    <input class="form-control" type="text" id="username" name="username" placeholder="Username" required>
+    <input class="form-control" type="text" id="email" name="email" placeholder="Email address" required>
+    <input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
+    <button>SignUp</button>
+</form>
