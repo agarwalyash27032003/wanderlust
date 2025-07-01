@@ -4,17 +4,17 @@ const User = require("../models/user.js");
 
 module.exports.index = async (req, res) => {
     const { type } = req.query;
-    console.log("Filter type from query:", type);
-
     let listings;
     if (type) {
-        listings = await Listing.find({ property_type: type });
+        listings = await Listing.find({ property_type: new RegExp(`^${type}$`, "i") });
     } else {
         listings = await Listing.find({});
     }
+console.log("Filter type from query:", type);
 
     res.render("listings/index.ejs", { listings, title: "WanderLust" });
 };
+
 
 
 module.exports.renderForm = (req, res) => {
