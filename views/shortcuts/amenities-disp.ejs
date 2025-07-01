@@ -1,0 +1,38 @@
+<hr>
+<h4>What's in it for you?</h4>
+<div class="amenities mb-3">
+  <% listing.amenities.forEach(amenity => { %>
+    <div class="amenity-item">
+      <% if (amenity === "Wifi") { %>
+        <i class="fas fa-wifi"></i> Wi-Fi
+      <% } else if (amenity === "TV") { %>
+        <i class="fas fa-tv"></i> TV
+      <% } else if (amenity === "Kitchen") { %>
+        <i class="fas fa-utensils"></i> Kitchen
+      <% } else if (amenity === "WM") { %>
+        <i class="fas fa-soap"></i> Washing Machine
+      <% } else if (amenity === "F-Parking") { %>
+        <i class="fas fa-parking"></i> Free parking on premises
+      <% } else if (amenity === "P-Parking") { %>
+        <i class="fas fa-ticket-alt"></i> Paid parking on premises
+      <% } else if (amenity === "AC") { %>
+        <i class="fas fa-snowflake"></i> Air Conditioning
+      <% } else if (amenity === "Workspace") { %>
+        <i class="fas fa-laptop-house"></i> Dedicated workspace
+      <% } else if (amenity === "Gym") { %>
+        <i class="fa-solid fa-dumbbell"></i> Gym
+      <% } else if (amenity === "Spa") { %>
+        <i class="fa-solid fa-spa"></i> Spa
+      <% } else if (amenity === "No-Smoking") { %>
+        <i class="fa-solid fa-ban-smoking"></i> No-Smoking
+      <% } else if (amenity === "Fire Extinguisher") { %>
+        <i class="fa-solid fa-fire-extinguisher"></i> Fire Extinguisher
+      <% } else if (amenity === "First aid") { %>
+        <i class="fa-solid fa-kit-medical"></i> First Aid Kit
+      <% } else { %>
+        <i class="fas fa-check-circle"></i> <%= amenity %>
+      <% } %>
+    </div>
+  <% }); %>
+</div>
+<hr>

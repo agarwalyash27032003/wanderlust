@@ -1,29 +1,45 @@
-<nav class="navbar navbar-expand-md border-bottom navbar-light bg-body-light">
+<nav class="navbar navbar-expand-md border-bottom navbar-light bg-body-light py-0">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings">Wanderlust</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    
+    <a class="navbar-brand py-0" href="/listings">
+      <img class="logo" src="/Images/logo.png" alt="">
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
+    
     <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav">
-            <a href="" class="nav-link"></a>
+      <div class="navbar-nav">
+        <!-- Add links here if needed -->
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+
+      <div class="menu-wrapper navbar-nav ms-auto">
+        <button class="menu-button" onclick="toggleMenu()" type="button">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="dropdown-menu" id="dropdown">
+          <% if (typeof currUser !== 'undefined' && currUser) { %>
+            <a href="/my-profile">My Profile</a>
+            <a href="/listings/new">Wanderlust your home!</a>
+            <a href="/my-bookings">My Bookings</a>
+            <a href="/my-listings">My Listings</a>
+            <a href="/logout">Log Out</a>
+          <% } else { %>
+            <a href="/signup">Sign Up</a>
+            <a href="/login">Log In</a>
+          <% } %>
         </div>
-        <div class="navbar-nav ms-auto">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-        <div class="navbar-nav ms-auto">
-            <a href="/listings/new" class="nav-link">Wanderlust your home!</a>
-            <% if(!currUser) { %>
-                <a href="/signup" class="nav-link">Sign Up</a>
-                <a href="/login" class="nav-link">Log In</a>
-            <% } %>
-            <% if(currUser) {%>
-                <a href="/logout" class="nav-link">Log Out</a>
-            <% } %>
-        </div>
+      </div>
     </div>
   </div>
 </nav>

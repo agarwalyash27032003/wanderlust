@@ -1,15 +1,44 @@
 <% layout('layouts/boilerplate') -%>
 <% var title = "Add New Property"; %>
 
-    <h1 class="page-heading" >Add new property!</h1>
+<h1 class="page-heading" >Add new property!</h1>
+<div class="form-step">
     <form class="add-new-form needs-validation" action="/listings" method="POST" novalidate enctype="multipart/form-data">
-        <input class="form-control" type="text" name="listing[title]" placeholder="Enter the name of property" required>
-        <textarea class="form-control" name="listing[description]" id="" placeholder="Enter the description" required></textarea>
-        <input class="form-control" type="file" name="listing[image]" placeholder="Upload Image" required> 
-        <input class="form-control" type="number" name="listing[price]" id="" placeholder="Enter the price" required> 
-        <input class="form-control" type="text" name="listing[location]" placeholder="Enter the location" required> 
-        <input class="form-control" type="text" name="listing[country]" placeholder="Enter the country" required> 
+        <div>
+            <label for="title">Give your Property a title</label>
+            <input class="form-control" id="title" type="text" name="listing[title]" placeholder="Ocean Breeze Retreat" required>
+        </div>
+        <div>
+            <label for="description">Tell more about your property</label>
+            <textarea class="form-control" id="description" name="listing[description]" id="" placeholder="Enter the description" required></textarea>
+        </div>
+        <div>
+            <label for="image">How does your property look like?</label>
+            <input class="form-control" id="image" type="file" name="listing[image]" placeholder="Upload Image" required> 
+        </div>
+        <div>
+            <label for="price">Price per night?</label>
+            <input class="form-control" id="price" type="number" name="listing[price]" id="" placeholder="Enter the price" required> 
+        </div>
+        <div>
+            <label for="location">Where is your property located?</label>
+            <input class="form-control" id="location" type="text" name="listing[location]" placeholder="Enter the location" required> 
+        </div>
+        <div>
+            <label for="country">Which country?</label>
+            <input class="form-control" id="country" type="text" name="listing[country]" placeholder="Enter the country" required> 
+        </div>
+
+        <h5 class="mb-3">What about these guest favourites?</h5>
+        <div class="row g-3 amenity-grid">
+            <%- include('../forms/amenity') -%>
+        </div>
+        
+        <h5 class="mb-3">Property Type?</h5>
+        <div class="row g-3 prop-type">
+            <%- include('../forms/property') -%>
+        </div>
+
         <button>Submit</button>
     </form>
-
-    
+</div>

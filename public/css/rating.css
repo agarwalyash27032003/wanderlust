@@ -85,7 +85,7 @@
   display: block;
   position: relative;
   width: 150px;
-  min-height: 60px;
+  /* min-height: 60px; */
   padding: 0;
   border: none;
   will-change: contents;
@@ -252,4 +252,8 @@
           animation-name: grow;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
+}
+
+#leave-review h4{
+  text-align: center;
 }

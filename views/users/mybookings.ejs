@@ -1,0 +1,22 @@
+<% layout('layouts/boilerplate') -%>
+<% var title = "Wanderlust"; %>
+<h1>My Bookings</h1>
+
+<div class="all-listing row row-cols-lg-4 mt-3">
+    <% for( let booking of user.bookings ) { %>
+        <div class="card col py-4">
+            <img src="<%=booking.listing.image.url%>" alt="">
+            <div class="card-body">
+                <h2><%=booking.listing.title%></h2>
+                <p>CheckIn: <%= booking.checkIn %> </p>
+                <p>CheckOut: <%= booking.checkOut %> </p>
+                <p>Number of Guests: <%= booking.guests %> </p>
+                <p>Booking Date: <%= booking.createdAt %> </p>
+            </div>
+            <form action="/listings/<%= booking.listing._id %>/bookings/?_method=DELETE" method="POST" onsubmit="return confirm('Do you want to cancel this booking?')">
+                <button class="btn btn-danger">Cancel</button>
+            </form>
+
+        </div>
+    <% } %>
+</div>

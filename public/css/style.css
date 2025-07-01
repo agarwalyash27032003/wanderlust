@@ -23,13 +23,14 @@ a {
 
 .edit-prop{
     color: black !important;
+    border: none;
     background: #80808036;
     padding: 10px;
     border-radius: 10px;
 }
 
-a.edit-prop:hover {
-    background: #4b474736;
+.edit-prop:hover {
+    background: #4b474736 !important;
 }
 
 button.primary-btn:hover {
@@ -56,6 +57,10 @@ nav h1{
 nav h1 a{
     color: black !important;
 } */
+
+.logo{
+  height: 6rem;
+}
 
 .all-listing{
     margin: 0 !important;
@@ -128,8 +133,14 @@ nav h1 a{
     justify-content: space-around;
 }
 
+.left-sec{
+  max-width: 60%;
+}
+
 .right-sec{
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
     justify-content: center;
     width: 30%;
     align-items: center;
@@ -157,17 +168,34 @@ nav h1 a{
     font-weight: normal;
 }
 
+/* Booking Form */
+#booking-form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#booking-form input[type="date"],
+#booking-form input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
 /* Add new property */
 .add-new-form {
-  max-width: 600px;
+  max-width: 60%;
   margin: 20px auto;
   padding: 30px;
-  background-color: #f8f9fa;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+.add-new-form label{
+  font-size: 1.5rem;
 }
 
 .add-new-form input,
@@ -183,7 +211,8 @@ nav h1 a{
 
 .add-new-form input:focus,
 .add-new-form textarea:focus {
-  border-color: indianred;
+  box-shadow: none !important;
+  border: 2px solid black;
 }
 
 .add-new-form textarea {
@@ -191,7 +220,7 @@ nav h1 a{
   resize: vertical;
 }
 
-.add-new-form button {
+.add-new-form button, #booking-form button {
   padding: 12px;
   background-color: indianred;
   color: white;
@@ -203,7 +232,7 @@ nav h1 a{
   transition: background-color 0.3s ease;
 }
 
-.add-new-form button:hover {
+.add-new-form button:hover, #booking-form button:hover {
   background-color: #0056b3;
 }
 
@@ -249,4 +278,110 @@ nav h1 a{
 
 .social-icons a:hover img {
   transform: scale(1.2);
+}
+
+.menu-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .menu-button {
+    background: #f4f4f4;
+    border: none;
+    border-radius: 50%;
+    padding: 12px 15px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  }
+
+  .menu-button i {
+    font-size: 18px;
+    color: black;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background-color: white;
+    min-width: 180px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1000;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: indianred;
+    color: white;
+  }
+
+
+.amenity-grid {
+  margin-bottom: 1rem;
+}
+.amenity-tile {
+  display: block;
+  cursor: pointer;
+}
+.tile-content {
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+  transition: 0.2s;
+  background-color: #f9f9f9;
+  height: 100%;
+}
+.amenity-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.amenity-label {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+input[type="checkbox"]:checked + .tile-content {
+  border-color: black;
+  background-color: #f1f1f1;
+}
+input[type="radio"]:checked + .tile-content {
+  border-color: black;
+  background-color: #f1f1f1;
+}
+
+.amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.amenity-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .amenity-item {
+    padding: 4px 8px;
+    font-size: 12px;
+    gap: 6px;
+  }
 }

@@ -1,13 +1,36 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
+const Booking = require("./booking.js");
+const Listing = require("./listing.js");
 
 // Here passportLocalMongoose creates username and password in Schema with hashed and salted
 const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-    }
+    },
+    bookings: [
+        { 
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: "Booking", 
+            required: true 
+        }
+    ],
+    listings: [
+        { 
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: "Listing", 
+            required: true 
+        }
+    ]
+});
+
+userSchema.post("findOneAndDelete", async(user) => {
+  if(user){
+    await Listing.deleteMany({_id : {$in: user.listings}});
+    await Booking.deleteMany({_id : {$in: user.bookings}});
+  }
 });
 
 userSchema.plugin(passportLocalMongoose);

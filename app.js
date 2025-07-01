@@ -65,6 +65,7 @@ const Review = require("./models/review.js");
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const bookingRouter = require("./routes/booking.js");
 
 main().then(() => {
     console.log("Database successful");
@@ -82,18 +83,9 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.get("/demo", async (req, res) => {
-//     let fakeUser = new User({
-//         email: "student@gmail.com",
-//         username: "agarwalyash",
-//     });
-
-//     let registeredUser = await User.register(fakeUser, "helloworld"); // Automatiically checks if username is unique or not
-//     res.send(registeredUser);
-// });
-
-app.use("/listings", listingRouter);
+app.use("/listings", listingRouter); // Every route defined in listingRouter will be prefixed with /listings.
 app.use("/listings/:id/reviews", reviewRouter);
+app.use("/listings/:id/bookings", bookingRouter);
 app.use("/", userRouter);
 
 app.all("/{*any}", (req, res, next) => {

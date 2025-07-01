@@ -42,3 +42,18 @@ module.exports.logout = (req, res, next) => {
         res.redirect("/listings");
     })
 };
+
+module.exports.myProfile = (req, res) => {
+    const user = req.user;
+    res.render("users/myprofile.ejs", { title: "Wanderlust", user });
+}
+
+module.exports.myListing = async (req, res) => {
+    const user = await User.findById(req.user._id).populate("listings");
+    res.render("users/mylistings.ejs", { title: "Wanderlust", user });
+}
+
+module.exports.myBooking = async (req, res) => {
+    const user = await User.findById(req.user._id).populate({path: "bookings",populate: {path: "listing"}});
+    res.render("users/mybookings.ejs", { title: "Wanderlust", user });
+}
