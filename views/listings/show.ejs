@@ -61,7 +61,7 @@
                         <% for( review of listing.reviews ) { %>
                         <div class="ind-review">
                             <div class="review-auth">
-                                <img src="<%= currUser.profileImage.url %>" alt="" class="profile-image">
+                                <img src="<%= review.author.profileImage.url %>" alt="" class="profile-image">
                                 <p class="review-author"> @<%= review.author.username %> </p>
                             </div>
                             <p class="starability-result" data-rating=<%= review.rating %>></p>
