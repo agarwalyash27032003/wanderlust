@@ -10,6 +10,8 @@ module.exports.listingSchema = Joi.object({
         image: Joi.string().allow("", null),
         amenities: Joi.array().items(Joi.string()).optional(), 
         property_type: Joi.string().required(),
+        latitude: Joi.number().required(),      // ✅ add this
+        longitude: Joi.number().required(),  
     }).required()
 });
 

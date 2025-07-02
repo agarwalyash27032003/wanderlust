@@ -6,6 +6,27 @@ const Listing = require("./listing.js");
 
 // Here passportLocalMongoose creates username and password in Schema with hashed and salted
 const userSchema = new Schema({
+    firstName:{
+        type: String,
+        required: true
+    },
+    lastName:{
+        type: String,
+    },
+    contactNumber:{
+        type: Number,
+        required: true
+    },
+    profileImage:{
+        url:{
+            type: String,
+            default: "https://res.cloudinary.com/dxk7cwat3/image/upload/v1751460139/default_dp_kvozhr.png"
+        },
+        filename:{
+            type: String,
+            default: "default_dp",
+        }
+    },
     email: {
         type: String,
         required: true,

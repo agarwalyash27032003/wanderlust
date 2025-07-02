@@ -13,6 +13,10 @@
         <input type="number" name="listing[price]" value="<%= listing.price %>" id="">
         <input type="text" name="listing[location]" value="<%= listing.location %>" id=""> 
         <input type="text" name="listing[country]" value="<%= listing.country %>" id=""> 
+        <div id="map" style="height: 400px;"></div>
+        <input type="hidden" name="listing[longitude]" id="lng" value="<%= listing.longitude %>">
+        <input type="hidden" name="listing[latitude]" id="lat" value="<%= listing.latitude %>">
+
         <h5 class="mb-3">What about these guest favourites?</h5>
         <div class="row g-3 amenity-grid">
             <%- include('../forms/amenity') -%>

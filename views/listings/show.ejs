@@ -6,7 +6,7 @@
         <h1><%=listing.title%></h1>
         <p class="location" ><%= listing.location %>, <%= listing.country %></p>
         <p class="location" >@<%= listing.owner.username %></p>
-        <img src=<%=listing.image.url%> alt="">
+        <img src=<%=listing.image.url%> alt="" class="listing-image"> 
         <div class="sections">
             <div class="left-sec">
                 <p><%=listing.description%></p>
@@ -55,19 +55,28 @@
         <% } %>
         
         <% if (listing.reviews.length > 0) { %>
-            <div id="reviews">
-                <h4>Reviews</h4>
-                <% for( review of listing.reviews ) { %>
-                    <div class="ind-review">
-                        <p class="review-author"> @<%= review.author.username %> </p>
-                        <p class="starability-result" data-rating=<%= review.rating %>></p>
-                        <p class="review-comment"><%= review.comment %></p> 
-                        <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                            <button class="primary-btn">Delete Review!</button>
-                        </form>
+            <div id="reviews-section">
+                <h4 class="text-center">Reviews</h4>
+                <div id="reviews">
+                        <% for( review of listing.reviews ) { %>
+                        <div class="ind-review">
+                            <div class="review-auth">
+                                <img src="<%= currUser.profileImage.url %>" alt="" class="profile-image">
+                                <p class="review-author"> @<%= review.author.username %> </p>
+                            </div>
+                            <p class="starability-result" data-rating=<%= review.rating %>></p>
+                            <p class="review-comment"><%= review.comment %></p>
+                            <% if (review.author._id.toString() === currUser._id.toString()) { %>
+                                <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                                    <button class="primary-btn">Delete Review!</button>
+                                </form>
+                            <% } %>
+                        </div>
+                        <% } %>
                     </div>
-                <% } %>
             </div>
         <% } %>
         
+        <div id="map" data-lat="<%= listing.latitude %>" data-lng="<%= listing.longitude %>" style="height: 400px;"></div>
+
     </div>

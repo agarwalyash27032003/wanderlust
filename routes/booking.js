@@ -23,16 +23,25 @@ router.post("/", isLoggedIn, async (req, res) => {
     await user.save();
 
     // console.log("Booking data:", newBooking);
-    res.redirect("/listings");
+    req.flash("success", "Congratulations! Booking is successful");
+    res.redirect("/my-bookings");
 });
 
-router.delete("/:id/bookings", isLoggedIn, async (req, res) => {
-  let { id } = req.params;
-    // await Listing.findByIdAndDelete(id);
-    const booking = await Booking.findById(id);
-    console.log(booking);
-    req.flash("success", "Listing has been deleted!");
-    res.redirect("/listings");
+// DELETE /listings/:id/bookings/:bookingId
+router.delete("/:bookingId", isLoggedIn, async (req, res) => {
+    const { id, bookingId } = req.params;
+
+    // Delete the booking
+    await Booking.findByIdAndDelete(bookingId);
+
+    // Remove reference from Listing
+    await Listing.findByIdAndUpdate(id, { $pull: { bookings: bookingId } });
+
+    // Remove reference from User
+    await User.findByIdAndUpdate(req.user._id, { $pull: { bookings: bookingId } });
+
+    req.flash("success", "Booking cancelled.");
+    res.redirect("/my-bookings");
 });
 
 module.exports = router;

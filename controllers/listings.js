@@ -1,6 +1,7 @@
 const Listing = require("../models/listing.js");
 const ExpressError = require("../utils/ExpressError");
 const User = require("../models/user.js");
+const countries = require("countries-list");
 
 module.exports.index = async (req, res) => {
     const { type } = req.query;
@@ -10,15 +11,14 @@ module.exports.index = async (req, res) => {
     } else {
         listings = await Listing.find({});
     }
-console.log("Filter type from query:", type);
 
     res.render("listings/index.ejs", { listings, title: "WanderLust" });
 };
 
-
-
 module.exports.renderForm = (req, res) => {
-    res.render("listings/new.ejs", { title: `Add New Property - Wanderlust` });
+    const countryCodes = Object.keys(countries.countries);
+    const countryNames = countryCodes.map(code => countries.countries[code].name).sort();
+    res.render("listings/new.ejs", { countryNames, title: `Add New Property - Wanderlust` });
 };
 
 module.exports.createListing = async (req, res, next) => {
@@ -26,10 +26,13 @@ module.exports.createListing = async (req, res, next) => {
     const user = await User.findById(req.user._id);
     let url = req.file.path;
     let filename = req.file.filename;
-    let newListing = new Listing(req.body.listing);
 
+    let newListing = new Listing(req.body.listing);
+    newListing.latitude = req.body.listing.latitude;
+    newListing.longitude = req.body.listing.longitude;
     newListing.owner = req.user._id;
     newListing.image = {url, filename};
+
     user.listings.push(newListing);
 
     await newListing.save();
@@ -53,6 +56,7 @@ module.exports.showListing = async (req, res) => {
     res.render("listings/show.ejs", { listing, title: `${listing.title} - Wanderlust` });
 };
 
+// Getting the edit form
 module.exports.editForm = async (req, res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id);
@@ -70,9 +74,14 @@ module.exports.editForm = async (req, res) => {
     });
 };
 
+// Editing the form
 module.exports.editListing = async (req, res) => {
     let { id } = req.params;
-    let listing = await Listing.findByIdAndUpdate(id, {...req.body.listing});
+    let listing = await Listing.findByIdAndUpdate(id, {
+        ...req.body.listing,
+        latitude: req.body.listing.latitude,
+        longitude: req.body.listing.longitude
+    });
 
     if(typeof req.file !== "undefined"){
         let url = req.file.path;

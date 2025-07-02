@@ -26,8 +26,18 @@
         </div>
         <div>
             <label for="country">Which country?</label>
-            <input class="form-control" id="country" type="text" name="listing[country]" placeholder="Enter the country" required> 
+            <select class="form-control" name="listing[country]" id="country">
+            <% for (let i = 0; i < countryNames.length; i++) { %>
+                <option value="<%= countryNames[i] %>"><%= countryNames[i] %></option>
+            <% } %>
+            </select>
         </div>
+
+        <div id="map" style="height: 400px;"></div>
+
+        <input type="hidden" name="listing[longitude]" id="lng">
+        <input type="hidden" name="listing[latitude]" id="lat">
+
 
         <h5 class="mb-3">What about these guest favourites?</h5>
         <div class="row g-3 amenity-grid">

@@ -1,4 +1,18 @@
 <% layout('layouts/boilerplate') -%>
 <% var title = "Wanderlust"; %>
+<title><%= title %></title>
 
-<h1>Hello <%= user %></h1>
+<h1 class="text-center">My Profile</h1>
+
+<form class="add-new-form" action="/my-profile?_method=PUT" method="POST" enctype="multipart/form-data">
+    <input type="text" name="user[firstName]" placeholder="Enter your first name" value="<%= user.firstName %>" id="" required>
+    <input type="text" name="user[lastName]" placeholder="Enter your last name" value="<%= user.lastName %>" id="">
+    <input type="number" name="user[contactNumber]" placeholder="Enter your contact number" value="<%= user.contactNumber %>" id="" required>
+    <div class="org-image">
+        <p>Profile Image</p>
+        <img src=<%= proImage %> alt="">
+    </div>
+    <input type="file" name="user[profileImage]" id="">
+    <input type="text" name="user[email]" value="<%= user.email %>" id="" required>
+    <button>Submit</button>
+</form>
