@@ -66,7 +66,7 @@
                             </div>
                             <p class="starability-result" data-rating=<%= review.rating %>></p>
                             <p class="review-comment"><%= review.comment %></p>
-                            <% if (currUser && author._id.toString() === currUser._id.toString()) { %>
+                            <% if (currUser && review.author._id.toString() === currUser._id.toString()) { %>
                                 <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
                                     <button class="primary-btn">Delete Review!</button>
                                 </form>
