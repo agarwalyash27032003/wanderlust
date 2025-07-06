@@ -44,7 +44,14 @@ const userSchema = new Schema({
             ref: "Listing", 
             required: true 
         }
-    ]
+    ],
+    wishlists: [ 
+        { 
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: "Listing", 
+            required: true 
+        }
+    ],
 });
 
 userSchema.post("findOneAndDelete", async(user) => {

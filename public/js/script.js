@@ -1,5 +1,4 @@
-// In public/js/script.js or inline script
-console.log("IN Js");
+
 (() => {
   'use strict'
 
@@ -114,3 +113,4 @@ document.addEventListener('DOMContentLoaded', () => {
       .addTo(map);
   }
 });
+

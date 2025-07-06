@@ -257,3 +257,9 @@
 #leave-review h4{
   text-align: center;
 }
+
+.starability-result {
+    font-size: 0.8rem;
+    transform: scale(0.7);
+    transform-origin: left center;
+}

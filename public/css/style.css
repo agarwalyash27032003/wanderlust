@@ -14,12 +14,35 @@ a {
   text-decoration: none !important;
 }
 
+p{
+  margin: 0 !important;
+}
+
 .primary-btn {
   border: none;
   background: indianred;
   padding: 10px;
   border-radius: 30px;
   color: white;
+}
+
+.edu-font{
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.bebas-neue-regular-font {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 5rem;
+    text-align: center;
+    font-style: normal;
+    margin-bottom: 0;
 }
 
 .edit-prop {
@@ -106,16 +129,38 @@ nav h1 a{
   color: #555;
 }
 
+.wishlist-btn{
+  position: absolute;
+  bottom: 2.5rem;
+  right: 3rem;}
+
+.wishlist-btn button{
+  border: none;
+  background: none;
+}
+
+.wishlist-btn:hover{
+  color: indianred;
+}
+
+.wishlist-icon {
+    transition: color 0.2s ease;
+}
+
+.wishlist-icon.active {
+    color: indianred; /* active color */
+}
+
 
 /* SHOW PAGE */
-#show-page h1 {
-  margin-top: 5vh;
-  text-align: center;
+#show-page{
+  width: 80%;
+  margin: auto;
 }
 
 .listing-image {
   display: block;
-  width: 80%;
+  width: 100%;
   height: 60vh;
   object-fit: cover;
   margin: auto;
@@ -130,13 +175,24 @@ nav h1 a{
 
 .sections {
   display: flex;
-  width: 80%;
+  /* width: 80%; */
   margin: 5vh auto 5vh auto;
   justify-content: space-around;
 }
 
 .left-sec {
   max-width: 60%;
+}
+
+.hosted-by{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hosted-by p{
+  font-weight: 500;
+  font-size: 1.4rem;
 }
 
 .right-sec {
@@ -170,6 +226,24 @@ nav h1 a{
   font-weight: normal;
 }
 
+.things-col{
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+}
+
+.things-col div{
+  width: 30%;
+}
+
+.things-col p{
+  font-size: larger;
+}
+
+.things-head{
+  font-weight: bold;
+}
+
 /* Booking Form */
 #booking-form {
   display: flex;
@@ -186,6 +260,7 @@ nav h1 a{
   border: 1px solid #ccc;
 }
 
+/* Add new property */
 /* Add new property */
 .add-new-form {
   max-width: 60%;
@@ -210,6 +285,7 @@ nav h1 a{
   font-family: 'Segoe UI', sans-serif;
   outline: none;
   transition: border-color 0.3s ease;
+  width: 100%;
 }
 
 .add-new-form input:focus,
@@ -240,71 +316,6 @@ nav h1 a{
 #booking-form button:hover {
   background-color: #0056b3;
 }
-
-/* REVIEWS */
-#reviews-section {
-  max-width: 600px;
-  margin: auto;
-}
-
-.review-auth{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-.review-auth p{
-  margin: auto 0;
-}
-
-.user-info{
-  display: flex;
-  gap: 0.5rem;
-}
-
-.ellipsis{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    background-color: #f8f8f8;
-    cursor: pointer;
-    box-shadow: none;
-}
-
-.ind-review {
-  border: 1px solid black;
-  border-radius: 20px;
-  width: 70%;
-  padding: 1rem;
-}
-
-.review-rating .fa-star {
-  color: gold;
-}
-
-.review-menu-wrapper {
-  position: relative; /* anchors the absolute dropdown */
-  display: inline-block;
-}
-
-.review-dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: white;
-  min-width: 160px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  z-index: 100;
-}
-
 
 
 /* Footer */
@@ -383,6 +394,7 @@ nav h1 a{
 
 .profile-image{
   height: 50px;
+  width: 50px;
   border-radius: 50%;
 }
 
@@ -476,4 +488,85 @@ input[type="radio"]:checked+.tile-content {
   border-radius: 50%;
   height: 200px;
   object-fit: cover;
+}
+
+/* REVIEWS */
+
+#reviews-section {
+    max-width: 1000px;
+    margin: 3rem auto;
+    /* padding: 1rem; */
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.review-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.review-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.review-username {
+    font-weight: bold;
+    margin: 0;
+}
+
+.review-comment {
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.delete-review-btn {
+    background: indianred;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.delete-review-btn:hover {
+    background: #e04343;
+}
+
+.form-control{
+  width: 20rem;
+}
+
+.search-btn{
+  border: 1px solid indianred;
+  color: indianred;
+}
+
+.search-btn:hover, .search-btn:active{
+  background-color: indianred !important;
+  border: none;
+}
+
+#map{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 3rem;
 }

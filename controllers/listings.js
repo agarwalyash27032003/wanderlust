@@ -4,21 +4,41 @@ const User = require("../models/user.js");
 const countries = require("countries-list");
 
 module.exports.index = async (req, res) => {
-    const { type } = req.query;
-    let listings;
+    const { type, location } = req.query;
+    let query = {};
+
     if (type) {
-        listings = await Listing.find({ property_type: new RegExp(`^${type}$`, "i") });
-    } else {
-        listings = await Listing.find({});
+        query.property_type = new RegExp(`^${type}$`, "i");
     }
 
-    res.render("listings/index.ejs", { listings, title: "WanderLust" });
+    if (location) {
+        query.$or = [
+            { country: new RegExp(location, "i") },
+            { location: new RegExp(location, "i") }
+        ];
+    }
+
+    let listings = await Listing.find(query);
+
+    // If location was searched and no listings were found
+    if (location && listings.length === 0) {
+        req.flash("error", "No listings found. Try a different location.");
+        listings = await Listing.find({}); // Load all listings
+    }
+
+    res.render("listings/index.ejs", {
+        listings,
+        title: "WanderLust",
+        location
+    });
 };
+
+
 
 module.exports.renderForm = (req, res) => {
     const countryCodes = Object.keys(countries.countries);
     const countryNames = countryCodes.map(code => countries.countries[code].name).sort();
-    res.render("listings/new.ejs", { countryNames, title: `Add New Property - Wanderlust` });
+    res.render("listings/new.ejs", {listing: { amenities: [] }, countryNames, title: `Add New Property - Wanderlust` });
 };
 
 module.exports.createListing = async (req, res, next) => {
@@ -50,10 +70,7 @@ module.exports.showListing = async (req, res) => {
         req.flash("error", "Listing Not Found!");
         return res.redirect("/listings");
     }
-    listing.bookings.forEach(booking => {
-        console.log(booking.user._id.toString());
-    }); 
-    res.render("listings/show.ejs", { listing, title: `${listing.title} - Wanderlust` });
+    res.render("listings/show.ejs", { now: Date.now(),listing, title: `${listing.title} - Wanderlust` });
 };
 
 // Getting the edit form

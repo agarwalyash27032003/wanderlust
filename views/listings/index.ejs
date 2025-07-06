@@ -36,15 +36,24 @@
     </div>
 </div>
 <div class="all-listing row row-cols-lg-4 mt-3">
-    <% for( let listing of listings ) { %>
-        <a href="/listings/<%=listing._id%>">
-            <div class="card col">
-                <img src="<%=listing.image.url%>" alt="">
-                <div class="card-body">
-                    <h2><%=listing.title%></h2>
-                    <p>&#8377;<%= listing.price?.toLocaleString("en-IN") || "N/A" %> / night</p>
+    <% for(let listing of listings) { %>
+        <div class="card-wrapper position-relative">
+            <a href="/listings/<%= listing._id %>">
+                <div class="card col position-relative">
+                    <img src="<%= listing.image.url %>" alt="">
+                    <div class="card-body">
+                        <h2><%= listing.title %></h2>
+                        <p>&#8377;<%= listing.price?.toLocaleString("en-IN") || "N/A" %> / night</p>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+            <!-- Heart icon outside the link but inside the card
+            <form action="/listings/<%=listing._id%>?_method=PUT" method="POST" class="wishlist-btn">
+                <input type="hidden" name="wishlistToggle" value="true">
+                <button>
+                    <i class="fa-regular fa-heart wishlist-icon"></i>
+                </button>
+            </form> -->
+        </div>
     <% } %>
 </div>
