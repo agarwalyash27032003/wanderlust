@@ -251,7 +251,7 @@ nav h1 a{
   gap: 0.5rem;
 }
 
-#booking-form input[type="date"],
+#booking-form input[type="text"],
 #booking-form input[type="number"] {
   width: 100%;
   padding: 8px;

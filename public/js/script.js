@@ -1,4 +1,3 @@
-
 (() => {
   'use strict'
 
@@ -112,5 +111,48 @@ document.addEventListener('DOMContentLoaded', () => {
       .setLngLat([lng, lat])
       .addTo(map);
   }
+});
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const form = document.getElementById("booking-form");
+    if (!form) return;
+
+    const listingIdInput = form.querySelector("input[name='listingId']");
+    if (!listingIdInput) return;
+
+    const listingId = listingIdInput.value;
+    const checkInInput = document.getElementById("checkin");
+    const checkOutInput = document.getElementById("checkout");
+
+    if (!checkInInput || !checkOutInput) return;
+
+    try {
+        const res = await fetch(`/listings/${listingId}/bookings/booked-dates`);
+        const data = await res.json();
+
+        // Ensure dates are converted to 'YYYY-MM-DD'
+        const disabledDates = data.bookedDates.map(date =>
+            new Date(date).toISOString().split('T')[0]
+        );
+
+        flatpickr(checkInInput, {
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            disable: disabledDates,
+            onChange: function(selectedDates, selectedDateStr) {
+                checkOutInput.removeAttribute("disabled");
+                flatpickr(checkOutInput, {
+                    dateFormat: "Y-m-d",
+                    minDate: selectedDateStr,
+                    disable: disabledDates
+                });
+            }
+        });
+
+        checkOutInput.setAttribute("disabled", true);
+    } catch (err) {
+        console.error("Error loading booked dates:", err);
+    }
 });
 

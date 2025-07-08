@@ -23,3 +23,25 @@ router.route("/:id")
 router.get("/:id/edit", isLoggedIn, isOwner,wrapAsync (listingController.editForm));
 
 module.exports = router;
+
+// Route: GET /listings/:id/bookings/booked-dates
+router.get("/:id/bookings/booked-dates", async (req, res) => {
+  try {
+    const listing = await Listing.findById(req.params.id).populate("bookings");
+    const bookedDates = [];
+
+    for (const booking of listing.bookings) {
+      let current = new Date(booking.checkIn);
+      const end = new Date(booking.checkOut);
+      while (current <= end) {
+        bookedDates.push(current.toISOString().split('T')[0]);
+        current.setDate(current.getDate() + 1);
+      }
+    }
+
+    res.json({ bookedDates });
+  } catch (err) {
+    console.error("Error fetching booked dates:", err);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});

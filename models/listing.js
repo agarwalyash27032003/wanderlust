@@ -18,6 +18,8 @@ const listingSchema = new Schema({
     country: String,
     latitude: Number,
     longitude: Number,
+    maxGuests: Number,
+    numOfRooms: Number,
     reviews: [
       {
         type: Schema.Types.ObjectId,

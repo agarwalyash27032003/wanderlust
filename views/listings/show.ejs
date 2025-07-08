@@ -34,17 +34,17 @@
                     
                     <div>
                         <label>Check-in:</label>
-                        <input class="date-input" id="checkin" type="date" name="checkIn" min="" required> 
+                        <input class="date-input" id="checkin" type="text" name="checkIn" min="" required> 
                     </div>
 
                     <div>
                         <label>Check-out:</label>
-                        <input class="date-input" id="checkout" type="date" name="checkOut" min="" required>
+                        <input class="date-input" id="checkout" type="text" name="checkOut" min="" required>
                     </div>
 
                     <div>
                         <label>Guests:</label>
-                        <input type="number" name="guests" min="1" value="1">
+                        <input type="number" name="guests" min="1" value="1" max=<%= listing.maxGuests %>>
                     </div>
 
                     <button type="submit">Book Now</button>

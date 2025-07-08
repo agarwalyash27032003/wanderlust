@@ -12,6 +12,8 @@ module.exports.listingSchema = Joi.object({
         property_type: Joi.string().required(),
         latitude: Joi.number().required(),      // ✅ add this
         longitude: Joi.number().required(),  
+        maxGuests: Joi.number().required(),  
+        numOfRooms: Joi.number().required(),  
     }).required()
 });
 

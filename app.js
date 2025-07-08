@@ -13,7 +13,8 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("./models/user.js");
- 
+const razorpay = require("razorpay"); 
+
 // Sessions
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
